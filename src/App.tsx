@@ -1,21 +1,30 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import head from "./head.svg";
 import { DogIcon } from "./components/DogIcon";
-function App() {
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+
+function App({ signOut }: { signOut?: any }) {
+  console.log(signOut);
   return (
-    <div className="App">
+    <View className="App">
       <header className="App-header">
         <h1> Liu's Hage {"<3 <3 <3"} </h1>
         <DogIcon size={250} />
-        {/* <img src={head} width={"100vw"} alt="head svg" /> */}
-        <div
-          style={{ width: "250px", backgroundColor: "white", height: "250px" }}
-        />
       </header>
-    </div>
+      <Card>
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
